@@ -141,7 +141,7 @@ a:hover {
 }
 
 .bg-gray1 {
-   // background-image: url(../images/backgrounds/bg-1.jpg);
+   
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url("../images/background1.jpg");
@@ -149,7 +149,7 @@ a:hover {
 
 
 .bg-gray2 {
-   // background-image: url(../images/backgrounds/bg-1.jpg);
+   
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url("https://perthmusicacademy.com.au/wp-content/uploads/2014/09/002-blurred-background-texture-vol2.png");
