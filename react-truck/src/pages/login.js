@@ -1,8 +1,16 @@
-import React from 'react'
+import { t } from 'i18next';
+import React,{useEffect} from 'react';
+import {Link} from 'react-router-dom';
 
-export default function login() {
+export default function Login() {
+    useEffect(()=>{
+        document.title ="Login"; 
+    });
+
+
   return (
     
+
     <section className="Login-Page">
         <div className="container">
             <div className="row login-row">
@@ -14,32 +22,32 @@ export default function login() {
                         </div>
 
                         <div className="register-link">
-                            <p>New to Truck Station?<a href="frontregister">Register</a></p>
+                            <p>{ t('new to truck station')} ? <Link to="/Register">{ t('register') }</Link></p>
                         </div>
                         
                         <form action="login" method="post" id="my-signup-form">
                             
                             <div className="form-group">
                             
-                                <input type="email" className="form-control" placeholder="Email" value="" id="email" name="email" />
+                                <input type="email" className="form-control" placeholder={ t('email') } value="" id="email" name="email" />
                                 
                             </div>
 
                             <div className="form-group">
                             
-                                <input type="password" className="form-control " placeholder="Password" id="pwd" name="password" required="" />
+                                <input type="password" className="form-control " placeholder={ t('password') } id="pwd" name="password" required="" />
                            
                             </div>
 
                         
                             <div className="subss login-btn">
                                 
-                                <button type="submit" id="frlgin" className="btn ed_btn ed_orange LoginBtn" >Login
+                                <button type="submit" id="frlgin" className="btn ed_btn ed_orange LoginBtn" >{t('login')}
                                 </button>
                             </div>
 
                             <div className="Forgot-pass">
-                                <a href="forget_password">Forgot password?</a>
+                                 <Link to="/Forget_Password">{ t('forgot password') }?</Link>
                             </div>
                         </form>
                     </div>

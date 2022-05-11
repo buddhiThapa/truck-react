@@ -1,0 +1,26 @@
+{ 
+    "welcome":"Welcome !!",
+    "home":"Home",
+    "email":"Email",
+    "email address":"Email Address",
+    "password":"Password",
+    "login":"Login",
+    "register":"Register",
+    "introduction":"Introduction",
+    "details":"Details",
+    "services":"Services",
+    "testimonials":"Testimonials",
+    "contact us":"Contact us",
+    "new to truck station":"New To Truck Station",
+    "forgot password":"Forgot password",
+    "Registration Form":"registration form",
+    "enter name":"Enter Name",
+    "sign in":"Sign In",
+    "already have account":"Already Have Account",
+    "confirm password":"Confirm Password",
+    "new password":"new password",
+    "registration form":"Registration Form",
+    "reset password":"Reset Password",
+    "send password reset link":"Send Password Reset Link"
+
+}
