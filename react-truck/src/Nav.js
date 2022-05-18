@@ -117,15 +117,15 @@ export function Nav(){
                 </ul>
               </li>
               <li>
-                <select name="language" className="form-control" onChange={onChange}>
-                <option>Language</option>
-                  {
-                    Object.keys(language).map((lang_key)=>{
-                      return (
-                      <option selected ={lan===lang_key ? 'selected' : ''} value={lang_key}>{language[lang_key]}</option>
-                      )
-                  })
-                  }
+                <select name="language" className="btn-outline-sm dropdown-toggle" onChange={onChange}>
+                  <option className="dropdown-divider">Language</option>
+                    {
+                      Object.keys(language).map((lang_key)=>{
+                        return (
+                        <option className="dropdown-item" selected ={lan===lang_key ? 'selected' : ''} value={lang_key}>{language[lang_key]}</option>
+                        )
+                      })
+                    }
                 </select>
               </li>
 

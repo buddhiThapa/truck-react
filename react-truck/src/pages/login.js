@@ -1,11 +1,61 @@
 import { t } from 'i18next';
-import React,{useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import React,{useEffect , useState} from 'react';
+import { Link,Redirect ,useNavigate } from 'react-router-dom';
+
+
+import { Formik,Field,Form,ErrorMessage } from 'formik';
+import Textfield from './Textfield';
+import * as yup from 'yup'; 
+import axios from 'axios';
 
 export default function Login() {
+
+    const navigate = useNavigate();
+const [auth,setAuth] =useState('');
+
+
+
+
+
+
+
+
+
+
+
+
     useEffect(()=>{
         document.title ="Login"; 
-    });
+        
+    },[]);
+
+  const formInitialVal ={
+      email :"",
+      password:""
+  }
+  const formValidation = yup.object().shape({
+
+      email : yup.string()
+            .required('Email is required')
+            .email('email is not valid'),
+      password : yup.string()
+            .required()
+            .min(6,'Password is too short - should be 8 chars minimum.')
+  })
+
+  const formValue=(values)=>{
+      console.log('submited value on submit',values);
+
+      //login Api
+      axios.post("http://truckstation.com/public/api/newlogin",values)
+            .then((response)=>{
+                console.log('success',response) ;
+                navigate('/Register');
+            }).catch((error)=>{
+                console.log('error',error)
+                setAuth(error.response.data.message);
+            })
+  }
 
 
   return (
@@ -24,32 +74,56 @@ export default function Login() {
                         <div className="register-link">
                             <p>{ t('new to truck station')} ? <Link to="/Register">{ t('register') }</Link></p>
                         </div>
-                        
-                        <form action="login" method="post" id="my-signup-form">
+
+                        <h4 className='text-center'>
+                            formik with yup validation
+                        </h4>
+                        <p className='text-danger'>{ auth }</p>
+                        <Formik initialValues = { formInitialVal }
+                                    onSubmit = { (values => formValue(values) ) }
+                                    validationSchema = { formValidation } >
+
+                            <Form>
+
                             
-                            <div className="form-group">
-                            
-                                <input type="email" className="form-control" placeholder={ t('email') } value="" id="email" name="email" />
+                                <div className="form-group">
                                 
-                            </div>
+                                    <Field type="email" name="email" placeholder={ t('email') } className="form-control" />
 
-                            <div className="form-group">
-                            
-                                <input type="password" className="form-control " placeholder={ t('password') } id="pwd" name="password" required="" />
-                           
-                            </div>
+                                    <p className='text-danger'>
+                                        <ErrorMessage name="email" />
+                                    </p>
 
-                        
-                            <div className="subss login-btn">
+                                </div>
+
+                                <div className="form-group">
                                 
-                                <button type="submit" id="frlgin" className="btn ed_btn ed_orange LoginBtn" >{t('login')}
-                                </button>
-                            </div>
+                                    <Field type="password" name="password" placeholder={ t('password') } className="form-control" />
 
-                            <div className="Forgot-pass">
-                                 <Link to="/Forget_Password">{ t('forgot password') }?</Link>
-                            </div>
-                        </form>
+                                    <p className='text-danger'>
+                                        <ErrorMessage name="password" />
+                                    </p>
+                                
+                                </div>
+
+                                <div className="subss login-btn">
+                                    
+                                    <button type="submit" id="frlgin" className="btn ed_btn ed_orange LoginBtn" >{t('login')}
+                                    </button>
+
+                                </div>
+                                
+                                <div className="Forgot-pass">
+
+                                    <Link to="/Forget_Password">{ t('forgot password') }?</Link>
+                                    
+                                </div>
+                            </Form>
+
+                        </Formik>
+
+
+
                     </div>
                 </div>
             </div>
@@ -57,3 +131,29 @@ export default function Login() {
     </section>
   )
 }
+{/*         
+                        <form  method="post" id="my-signup-form">
+                                    <input type="email" className="form-control" onChange={ (e)=> setName(e.target.value) } placeholder={ t('email') } value={name} id="email" name="email" />
+                                
+                                <div className="form-group">
+                                
+                                    
+                                </div>
+                                
+                                <div className="form-group">
+                                
+                                    <input type="password" className="form-control " onChange={ (e)=> setPassword(e.target.value) } placeholder={ t('password') } id="pwd" name="password" required="" value={password} />
+                                
+                                </div>
+                                
+                                
+                                <div className="subss login-btn">
+                                    
+                                    <button onClick={ form_data_get } type="button" id="frlgin" className="btn ed_btn ed_orange LoginBtn" >{t('login')}
+                                    </button>
+                                </div>
+                                
+                                <div className="Forgot-pass">
+                                    <Link to="/Forget_Password">{ t('forgot password') }?</Link>
+                                </div>
+                                </form> */}

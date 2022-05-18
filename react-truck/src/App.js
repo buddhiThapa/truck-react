@@ -5,12 +5,14 @@ import { Home } from './Home';
 import { Footer } from './Footer';
 import { Register } from './pages/Register';
 import { Forget_password } from './pages/Forget_password';
+import { Truck_types } from './pages/TruckTypes';
 import Login from './pages/Login';
 import  i18n  from 'i18next';
+
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
+  Route
 } from "react-router-dom";
 import { useEffect,useState } from 'react';
 
@@ -18,6 +20,7 @@ import { useEffect,useState } from 'react';
 const App = ()=> {
   
   const [lan,setLang] = useState('en');
+  
   useEffect(()=>{
     i18n.changeLanguage(localStorage.getItem('lang'));
     setLang(localStorage.getItem('lang'));
@@ -38,6 +41,7 @@ const App = ()=> {
         </Routes>
       </Router>
       
+      <Truck_types/>
       <Footer/>
     </div>
     
