@@ -11,52 +11,51 @@ import axios from 'axios';
 export default function Login() {
 
     const navigate = useNavigate();
-const [auth,setAuth] =useState('');
-
-
-
-
-
-
-
-
-
-
-
+    const [auth,setAuth] =useState('');
 
     useEffect(()=>{
         document.title ="Login"; 
         
     },[]);
+    
+    
+    //! *************************************for the login form start***************************************
+    //*for initial value
 
-  const formInitialVal ={
-      email :"",
-      password:""
-  }
-  const formValidation = yup.object().shape({
+    const formInitialVal ={
+        email :"",
+        password:""
+    }
+    
+    //*for form validation
 
-      email : yup.string()
-            .required('Email is required')
-            .email('email is not valid'),
-      password : yup.string()
-            .required()
-            .min(6,'Password is too short - should be 8 chars minimum.')
-  })
+    const formValidation = yup.object().shape({
 
-  const formValue=(values)=>{
-      console.log('submited value on submit',values);
+        email : yup.string()
+                .required('Email is required')
+                .email('email is not valid'),
+        password : yup.string()
+                .required()
+                .min(6,'Password is too short - should be 8 chars minimum.')
+    })
 
-      //login Api
-      axios.post("http://truckstation.com/public/api/newlogin",values)
-            .then((response)=>{
-                console.log('success',response) ;
-                navigate('/Register');
-            }).catch((error)=>{
-                console.log('error',error)
-                setAuth(error.response.data.message);
-            })
-  }
+    //*for form value get 
+    
+    const formValue=(values)=>{
+        //console.log('submited value on submit',values);
 
+        //login Api
+        axios.post("http://localhost:8000/api/newlogin",values)
+                .then((response)=>{
+                    console.log('success',response) ;
+                    navigate('/Register');
+                }).catch((error)=>{
+                    console.log('error',error)
+                    setAuth(error.response.data.message);
+                })
+    }
+
+  //! *************************************for the login form end***************************************
 
   return (
     
@@ -78,7 +77,16 @@ const [auth,setAuth] =useState('');
                         <h4 className='text-center'>
                             formik with yup validation
                         </h4>
-                        <p className='text-danger'>{ auth }</p>
+
+                        
+                        {
+                            //for api error message
+                            auth !=='' &&<div className='alert alert-danger'>
+                                            <p className='text-danger'>{ auth }</p>
+                                         </div>
+
+                        }
+
                         <Formik initialValues = { formInitialVal }
                                     onSubmit = { (values => formValue(values) ) }
                                     validationSchema = { formValidation } >
@@ -131,29 +139,4 @@ const [auth,setAuth] =useState('');
     </section>
   )
 }
-{/*         
-                        <form  method="post" id="my-signup-form">
-                                    <input type="email" className="form-control" onChange={ (e)=> setName(e.target.value) } placeholder={ t('email') } value={name} id="email" name="email" />
-                                
-                                <div className="form-group">
-                                
-                                    
-                                </div>
-                                
-                                <div className="form-group">
-                                
-                                    <input type="password" className="form-control " onChange={ (e)=> setPassword(e.target.value) } placeholder={ t('password') } id="pwd" name="password" required="" value={password} />
-                                
-                                </div>
-                                
-                                
-                                <div className="subss login-btn">
-                                    
-                                    <button onClick={ form_data_get } type="button" id="frlgin" className="btn ed_btn ed_orange LoginBtn" >{t('login')}
-                                    </button>
-                                </div>
-                                
-                                <div className="Forgot-pass">
-                                    <Link to="/Forget_Password">{ t('forgot password') }?</Link>
-                                </div>
-                                </form> */}
+

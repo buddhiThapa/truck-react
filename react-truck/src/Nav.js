@@ -53,6 +53,7 @@ export function Nav(){
     setLang(lang);
     setCount(count+1);
     window.location.reload(false);
+    //document.body.render()
   }
 
   useEffect(() =>{
