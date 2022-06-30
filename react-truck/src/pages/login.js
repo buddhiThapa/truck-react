@@ -42,15 +42,15 @@ export default function Login() {
     //*for form value get 
     
     const formValue=(values)=>{
-        //console.log('submited value on submit',values);
+
 
         //login Api
-        axios.post("http://localhost:8000/api/newlogin",values)
+        axios.post(process.env.REACT_APP_BASE_URL+"newlogin",values)
                 .then((response)=>{
-                    console.log('success',response) ;
-                    navigate('/Register');
+                    //console.log('success',response) ;
+                    navigate('/');
                 }).catch((error)=>{
-                    console.log('error',error)
+                    //console.log('error',error)
                     setAuth(error.response.data.message);
                 })
     }

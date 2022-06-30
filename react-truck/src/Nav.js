@@ -55,9 +55,8 @@ export function Nav(){
     window.location.reload(false);
     //document.body.render()
   }
-
   useEffect(() =>{
-    
+   
     document.title ="Home"; 
     i18n.changeLanguage(localStorage.getItem('lang'));
     setLang(localStorage.getItem('lang'));
@@ -74,7 +73,6 @@ export function Nav(){
                 {/* <!-- Navigation --> */}
       <nav id="navbar" className="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation">
         <div className="container">
-
           {/* <!-- Image Logo --> */}
           <a className="navbar-brand logo-image" href="index">
             <img src="/images/logo3.png" className="logo-st" />
@@ -108,7 +106,9 @@ export function Nav(){
               <li className="nav-item">
                 <a className="nav-link" href="#contact">{ t('contact us') }</a>
               </li>
-
+              <li className="nav-item">
+                <Link className="nav-link" to='/Dashboard'>{ t('Dashboard') }</Link>
+              </li>
               <li className="nav-item dropdown">
                 <a className="btn-outline-sm dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">{ t('login')}</a>
                 <ul className="dropdown-menu" aria-labelledby="dropdown01">
@@ -123,7 +123,7 @@ export function Nav(){
                     {
                       Object.keys(language).map((lang_key)=>{
                         return (
-                        <option className="dropdown-item" selected ={lan===lang_key ? 'selected' : ''} value={lang_key}>{language[lang_key]}</option>
+                        <option className="dropdown-item" selected ={lan===lang_key ? 'selected' : ''} key={language[lang_key]} value={lang_key}>{language[lang_key]}</option>
                         )
                       })
                     }

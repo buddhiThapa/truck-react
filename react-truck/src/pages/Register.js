@@ -10,7 +10,7 @@ import axios from 'axios';
 export function Register() {
 
     const [registrationError, setRegistrationError] = useState('');
-    const [validationerror,setValidationError] = useState([]);
+    const [validationError,setValidationError] = useState([]);
     const navigate = useNavigate();
 
     //!  ************************** for the  ragistration form start************************************* 
@@ -38,10 +38,10 @@ export function Register() {
         //registration  api
             axios.post('http://localhost:8000/api/newregistration',values)
                     .then((response)=>{
-                        console.log('success',response) ;
+                        //console.log('success',response) ;
                         navigate('/Login')
                     }).catch((error)=>{
-                        console.log('error',error)
+                        //console.log('error',error)
                         //setRegistrationError(error.response.data.message);
                         setValidationError(error.response.data.message);
                     })
@@ -96,9 +96,9 @@ export function Register() {
                                 <Field name='name'
                                        type='text'
                                        placeholder={ t('enter name') }
-                                       className={ "form-control " + ( validationerror.name !== undefined ?  "border border-danger" : "false") }
+                                       className={ "form-control " + ( validationError.name !== undefined ?  "border border-danger" : "false") }
                                  />
-                                { validationerror.name !=='' && validationerror.name }
+                                { validationError.name !=='' && validationError.name }
                                 <p className='text-danger text-left'><ErrorMessage name="name" /></p>
                                                                 
                             </div>
@@ -108,12 +108,12 @@ export function Register() {
                                 <Field name='email' 
                                         type='email'
                                         placeholder={ t('enter email') }
-                                        className={"form-control " + ( validationerror.email !== undefined ?  "border border-danger" : "false") } 
+                                        className={"form-control " + ( validationError.email !== undefined ?  "border border-danger" : "false") } 
 
                                 />
                                 
 
-                                <p className='text-danger'>{ validationerror.email !=='' && validationerror.email }</p>
+                                <p className='text-danger'>{ validationError.email !=='' && validationError.email }</p>
                                 <p className='text-danger'><ErrorMessage name="email" /></p>
                                                                 
                             </div>
@@ -123,10 +123,10 @@ export function Register() {
                                 <Field name = 'telephone'
                                        type = 'text' 
                                        placeholder = { t('enter telephone') }
-                                       className = { "form-control " + ( validationerror.telephone !== undefined ?  "border border-danger" : "false") }  />
+                                       className = { "form-control " + ( validationError.telephone !== undefined ?  "border border-danger" : "false") }  />
                                 
 
-                                <p className='text-danger'>{ validationerror.telephone !=='' && validationerror.telephone }</p>
+                                <p className='text-danger'>{ validationError.telephone !=='' && validationError.telephone }</p>
                                 <p className='text-danger'><ErrorMessage name="telephone" /></p>
                                                             
                             </div>
@@ -140,7 +140,7 @@ export function Register() {
                                 
                                 
 
-                                <p className='text-danger'>{ validationerror.is_admin !=='' && validationerror.is_admin }</p>
+                                <p className='text-danger'>{ validationError.is_admin !=='' && validationError.is_admin }</p>
                                 <p className='text-danger'><ErrorMessage name="is_admin" /></p>
                                                             
                             </div>
@@ -150,18 +150,18 @@ export function Register() {
                                 <Field name='password'
                                        type='password'
                                        placeholder={ t('new password') }
-                                       className={ "form-control " + ( validationerror.password !== undefined ?  "border border-danger" : "false") } />
+                                       className={ "form-control " + ( validationError.password !== undefined ?  "border border-danger" : "false") } />
                                 
 
-                                <p className='text-danger'>{ validationerror.password !=='' && validationerror.password }</p>
+                                <p className='text-danger'>{ validationError.password !=='' && validationError.password }</p>
                                 <p className='text-danger'><ErrorMessage name="password" /></p>
                                                                 
                             </div>
 
                             <div className="form-group">
 
-                                <Field name='confirm_password' type='password' placeholder={ t('confirm password') }  className={ "form-control " + ( validationerror.confirm_password !== undefined ?  "border border-danger" : "false") } />
-                                { validationerror.confirm_password !=='' && validationerror.confirm_password }
+                                <Field name='confirm_password' type='password' placeholder={ t('confirm password') }  className={ "form-control " + ( validationError.confirm_password !== undefined ?  "border border-danger" : "false") } />
+                                { validationError.confirm_password !=='' && validationError.confirm_password }
 
                                 <p className='text-danger'><ErrorMessage name="confirm_password" /></p>
                                                                 
