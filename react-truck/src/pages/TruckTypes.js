@@ -5,9 +5,10 @@ export const Truck_types = () => {
     
     const [truck_type,setTruck_type]=useState([]);
     useEffect(() => {
-        
-        axios.get("http://localhost:8000/api/user_truck-type")
+        //console.log('hello');
+        axios.get(process.env.REACT_APP_BASE_URL+"user_truck-type")
             .then((response)=>{
+                //console.log(response);
                 response.data.status==200 &&setTruck_type(response.data.data);
             ;   
             })
@@ -21,7 +22,7 @@ export const Truck_types = () => {
                 {
                     truck_type.map((val,index)=>{
                         return (
-                            <option value={index} key={index}>{val}</option>
+                            <option value={index} key={ val.type }>{val.type}<img src></img></option>
                         )
                     })   
                 }
