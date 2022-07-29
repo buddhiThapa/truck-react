@@ -4,7 +4,7 @@
 // Collapse the navbar by adding the top-nav-collapse class
 window.onscroll = function () {
 	scrollFunction();
-	scrollFunctionBTT(); // back to top button
+	// scrollFunctionBTT(); // back to top button
 };
 
 window.onload = function () {
@@ -28,9 +28,9 @@ for (let i = 0; i < elements.length; i++) {
 	});
 }
 
-document.querySelector(".navbar-toggler").addEventListener("click", () => {
-  	document.querySelector(".offcanvas-collapse").classList.toggle("open");
-});
+// document.querySelector(".navbar-toggler").addEventListener("click", () => {
+//   	document.querySelector(".offcanvas-collapse").classList.toggle("open");
+// });
 
 // Hover on desktop
 function toggleDropdown(e) {

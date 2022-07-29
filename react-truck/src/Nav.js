@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-// import { t } from "i18next";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+
 import  i18n  from 'i18next';
 import { initReactI18next ,useTranslation } from 'react-i18next';
 import { Suspense,useEffect,useState } from 'react';
@@ -32,7 +32,7 @@ i18n
 //! for the multi language functionality ( End )*********************************************************
 
 
-export function Nav(){
+export function Nav(props){
 
   
   const language ={
@@ -42,9 +42,11 @@ export function Nav(){
   }
   
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [count,setCount] = useState(0);
   const [lan,setLang] = useState('en');
-  
+  const [Auth,setAuth] = useState(props.Auth_data);
+
   function onChange(event){
     const lang = event.target.value;
 
@@ -53,16 +55,21 @@ export function Nav(){
     setLang(lang);
     setCount(count+1);
     window.location.reload(false);
-    //document.body.render()
+  }
+
+  const logout = () =>{
+     setAuth(0);
+     localStorage.clear();
+     navigate('/login');
   }
   useEffect(() =>{
    
     document.title ="Home"; 
     i18n.changeLanguage(localStorage.getItem('lang'));
     setLang(localStorage.getItem('lang'));
-    
-
-  },[lan])
+    setAuth(localStorage.getItem('isAuthenticated'))
+  },[lan,props.Auth_data])
+  
 
     
 
@@ -70,22 +77,14 @@ export function Nav(){
 
     return (
         <div>
-                {/* <!-- Navigation --> */}
       <nav id="navbar" className="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation">
         <div className="container">
-          {/* <!-- Image Logo --> */}
           <a className="navbar-brand logo-image" href="index">
-            <img src="/images/logo3.png" className="logo-st" />
-              
+            <img src="/images/logo3.png" className="logo-st" />  
           </a>
-
-          {/* <!-- Text Logo - Use this if you don't have a graphic logo --> */}
-          {/* <!-- <a className="navbar-brand logo-text" href="index.html">Yavin</a> --> */}
-
           <button className="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-
           <div className="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
             <ul className="navbar-nav ms-auto navbar-nav-scroll">
               <li className="nav-item">
@@ -106,11 +105,22 @@ export function Nav(){
               <li className="nav-item">
                 <a className="nav-link" href="#contact">{ t('contact us') }</a>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to='/Dashboard'>{ t('Dashboard') }</Link>
-              </li>
+              {
+                Auth > 0 && 
+                      <li className="nav-item">
+                        <Link className="nav-link" to='/Dashboard'>{ t('Dashboard') }</Link>
+                      </li>
+              }
               <li className="nav-item dropdown">
+              
+              {
+                Auth > 0 ? 
+                <button className="btn-outline-sm" onClick ={ logout } >Logout</button>
+                :
                 <a className="btn-outline-sm dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">{ t('login')}</a>
+
+              }
+
                 <ul className="dropdown-menu" aria-labelledby="dropdown01">
                   <li><div className="dropdown-divider"></div></li>
                   <li><Link to="/login" className="dropdown-item">{ t('login') }</Link></li>
