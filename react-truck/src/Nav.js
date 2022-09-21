@@ -46,34 +46,31 @@ export function Nav(props){
   const [count,setCount] = useState(0);
   const [lan,setLang] = useState('en');
   const [Auth,setAuth] = useState(props.Auth_data);
-
+  
+  console.log('hello',props.Auth_data,'Auth',Auth);
+  
   function onChange(event){
     const lang = event.target.value;
-
+    
     i18n.changeLanguage(event.target.value);
     localStorage.setItem('lang',lang);
     setLang(lang);
     setCount(count+1);
     window.location.reload(false);
   }
-
+  
   const logout = () =>{
-     setAuth(0);
-     localStorage.clear();
-     navigate('/login');
+    setAuth(0);
+    localStorage.clear();
+    props.Auth_check(0);
+    navigate('/login');
   }
-  useEffect(() =>{
-   
+
+  useEffect(() =>{    
     document.title ="Home"; 
     i18n.changeLanguage(localStorage.getItem('lang'));
-    setLang(localStorage.getItem('lang'));
-    setAuth(localStorage.getItem('isAuthenticated'))
-  },[lan,props.Auth_data])
-  
-
-    
-
-
+    setAuth(localStorage.getItem('isAuthenticated'));
+},[lan,props.Auth_data])
 
     return (
         <div>
@@ -112,7 +109,6 @@ export function Nav(props){
                       </li>
               }
               <li className="nav-item dropdown">
-              
               {
                 Auth > 0 ? 
                 <button className="btn-outline-sm" onClick ={ logout } >Logout</button>

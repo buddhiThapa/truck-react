@@ -91,7 +91,7 @@ export default function Login( props ) {
                                     </button>
                                 </div>
                                 <div className="Forgot-pass">
-                                    <Link to="/Forget_Password">{ t('forgot password') }?</Link>
+                                    <Link to="/Forget_Password">{ t('forgot password') } ?</Link>
                                 </div>
                             </Form>
                         </Formik>
