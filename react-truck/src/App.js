@@ -15,6 +15,8 @@ import { useEffect, useMemo, useState } from 'react';
 import {ProtectedRoute} from './pages/ProtectedRoute';
 // import { NewHome } from './pages/components/NewHome';
 import NewHomeContainer from './pages/container/NewHomeContainer';
+import { LoginCheck } from './pages/LoginCheck';
+import { ProductPagination } from './pages/user/ProductPagination';
 
 
 
@@ -47,20 +49,22 @@ const App = () => {
     <div className="App">
 
       <Router>
-        <Nav Auth_data ={Auth }  />
+        <Nav Auth_data ={ Auth } Auth_check = { Auth_check } />
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
-          <Route path="/dashboard" element={ <ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
-          <Route path="/login" element={<Login Auth_check = { Auth_check } />}></Route>
+          <Route path="/dashboard" element={ <ProtectedRoute><Dashboard /></ProtectedRoute> } > </Route>
+          <Route path="/product" element={ <ProtectedRoute><ProductPagination/></ProtectedRoute> } > </Route>
+          <Route path="/login" element={<LoginCheck> <Login Auth_check = { Auth_check } /> </LoginCheck>}></Route>
+          {/* <Route path="/Register" element={<LoginCheck> <Register /> </LoginCheck>}></Route> */}
           <Route path="/Register" element={<Register />}></Route>
           <Route path="/Forget_password" element={<Forget_password />}></Route>
         </Routes>
       </Router>
       {/* <NewHomeContainer/> */}
-      <Truck_types />
-      <PureComponent01 data={child_to_parent} />
-      <h1>{ForMemo}</h1>
-      <Footer />
+      {/* <Truck_types /> */}
+      {/* <PureComponent01 data={child_to_parent} />
+      <h1>{ForMemo}</h1> */}
+      {/* <Footer /> */}
     </div>
 
   );
