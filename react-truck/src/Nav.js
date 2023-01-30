@@ -47,7 +47,7 @@ export function Nav(props){
   const [lan,setLang] = useState('en');
   const [Auth,setAuth] = useState(props.Auth_data);
   
-  console.log('hello',props.Auth_data,'Auth',Auth);
+  // console.log('hello',props.Auth_data,'Auth',Auth);
   
   function onChange(event){
     const lang = event.target.value;
@@ -63,7 +63,7 @@ export function Nav(props){
     setAuth(0);
     localStorage.clear();
     props.Auth_check(0);
-    navigate('/login');
+    navigate('/Login');
   }
 
   useEffect(() =>{    
@@ -119,7 +119,7 @@ export function Nav(props){
 
                 <ul className="dropdown-menu" aria-labelledby="dropdown01">
                   <li><div className="dropdown-divider"></div></li>
-                  <li><Link to="/login" className="dropdown-item">{ t('login') }</Link></li>
+                  <li><Link to="/Login" className="dropdown-item">{ t('login') }</Link></li>
                   <li><Link to="/Register" className="dropdown-item">{ t('register') }</Link></li>
                 </ul>
               </li>

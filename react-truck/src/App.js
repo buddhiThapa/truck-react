@@ -46,7 +46,7 @@ const App = () => {
 
   return (
 
-    <div className="App">
+    <div>
 
       <Router>
         <Nav Auth_data ={ Auth } Auth_check = { Auth_check } />
